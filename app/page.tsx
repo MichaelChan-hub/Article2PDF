@@ -1,9 +1,32 @@
+/**
+ * 'use client' 指令
+ * 
+ * 这行告诉 Next.js 这是一个 Client Component（客户端组件）
+ * - 可以使用 React Hooks（useState, useEffect 等）
+ * - 可以使用浏览器 API（localStorage, window 等）
+ * - 可以有交互性（onClick 等事件处理）
+ * 
+ * 如果没有这行，组件默认为 Server Component
+ */
 'use client'
 
 import { useLanguage } from './contexts/LanguageContext'
 import { LanguageToggle } from './components/LanguageToggle'
 
+/**
+ * 首页组件 (Home Page)
+ * 
+ * 文件路径: app/page.tsx
+ * 对应路由: / (根路径)
+ * 
+ * Next.js 路由规则：
+ * - app/page.tsx → / (主页)
+ * - app/about/page.tsx → /about
+ * - app/blog/page.tsx → /blog
+ */
 export default function Home() {
+  // 使用语言切换 Context
+  // 获取翻译函数 t，用于多语言支持
   const { t } = useLanguage()
 
   return (
@@ -23,66 +46,67 @@ export default function Home() {
         </h1>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-2 gap-4">
         <a
-          href="/create"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          href="/about"
+          className="group rounded-lg border border-transparent px-8 py-6 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <h2 className="mb-3 text-2xl font-semibold">
-            {t('create-new')}{' '}
+            👉 关于页面{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('create-desc')}
+            查看 Server Component 示例，学习页面路由
           </p>
         </a>
-
+        
         <a
-          href="/library"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          href="/api-demo"
+          className="group rounded-lg border border-transparent px-8 py-6 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <h2 className="mb-3 text-2xl font-semibold">
-            {t('my-library')}{' '}
+            🚀 API 演示{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('library-desc')}
+            学习 Next.js API 路由的用法
           </p>
         </a>
-
-        <a
-          href="/templates"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            {t('templates')}{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            {t('templates-desc')}
-          </p>
-        </a>
-
-        <a
-          href="/settings"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            {t('settings')}{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50 text-left">
-            {t('settings-desc')}
-          </p>
-        </a>
+      </div>
+      
+      {/* 学习资源卡片 */}
+      <div className="max-w-5xl w-full">
+        <div className="grid text-center lg:grid-cols-2 gap-6">
+          <div className="rounded-lg border border-gray-300 dark:border-gray-700 px-6 py-6 bg-white dark:bg-gray-800">
+            <h3 className="text-xl font-semibold mb-3">📚 学习指南</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              阅读详细的学习文档，了解 Next.js 的核心概念
+            </p>
+            <ul className="text-left text-sm space-y-2 text-gray-700 dark:text-gray-300">
+              <li>✓ Server vs Client Components</li>
+              <li>✓ App Router 路由系统</li>
+              <li>✓ React Context 状态管理</li>
+              <li>✓ 国际化和本地化</li>
+            </ul>
+          </div>
+          
+          <div className="rounded-lg border border-gray-300 dark:border-gray-700 px-6 py-6 bg-white dark:bg-gray-800">
+            <h3 className="text-xl font-semibold mb-3">⚡ 快速参考</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              查看 QUICKSTART.md 获取快速入门指南
+            </p>
+            <ul className="text-left text-sm space-y-2 text-gray-700 dark:text-gray-300">
+              <li>✓ 常用命令速查</li>
+              <li>✓ 代码示例</li>
+              <li>✓ Tailwind CSS 技巧</li>
+              <li>✓ 常见问题解答</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </main>
   )

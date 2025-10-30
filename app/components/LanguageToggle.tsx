@@ -1,10 +1,21 @@
+/**
+ * 语言切换组件 (Language Toggle)
+ * 
+ * 这是一个可复用的组件
+ * 演示了：
+ * 1. Client Component 的使用 ('use client')
+ * 2. Context Hook 的使用 (useLanguage)
+ * 3. 事件处理 (onClick)
+ */
 'use client'
 
 import { useLanguage } from '../contexts/LanguageContext'
 
 export function LanguageToggle() {
+  // 从 Context 获取语言状态和切换函数
   const { language, setLanguage } = useLanguage()
 
+  // 切换语言：英文 ↔ 中文
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'zh' : 'en')
   }
